@@ -1,0 +1,20 @@
+---
+import SimplePage from "../components/SimplePage.astro";
+import { tools } from "../data/site";
+
+const cards = tools.map((tool) => ({
+  title: tool,
+  copy: "A practical diagnostic surface for operators preparing, checking, or repairing outbound infrastructure."
+}));
+---
+
+<SimplePage
+  title="Free Outbound Tools | Superwave"
+  description="Free tools and checklists for cold email infrastructure, DNS, deliverability, and launch readiness."
+  eyebrow="Tools"
+  headline="Free diagnostics for outbound operators."
+  copy="Use the toolbox to inspect domains, DNS, deliverability risk, launch readiness, and infrastructure cost before scaling send volume."
+  secondaryTitle="Tool library"
+  secondaryCopy="Each tool is designed to end in a useful decision: fix it yourself, or let Superwave manage the infrastructure."
+  cards={cards}
+/>

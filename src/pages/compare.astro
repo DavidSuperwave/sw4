@@ -1,0 +1,23 @@
+---
+import SimplePage from "../components/SimplePage.astro";
+
+const cards = [
+  { title: "Mailbox resellers", copy: "Compare against mailbox-first tools by showing the difference between inventory and managed operation." },
+  { title: "Warmup tools", copy: "Separate visible warmup scores from actual deliverability, placement, and risk monitoring." },
+  { title: "Sequencers", copy: "Clarify that sequencers send, while Superwave manages the rails and the activity data around them." },
+  { title: "Agencies", copy: "Position Superwave as infrastructure and intelligence, not a campaign service shop." },
+  { title: "AI SDRs", copy: "Show why AI outreach still fails when it is sending over broken infrastructure." },
+  { title: "In-house ops", copy: "Compare the cost of manual inbox operations against a managed operator layer." }
+];
+---
+
+<SimplePage
+  title="Compare | Superwave"
+  description="Compare Superwave against mailbox tools, warmup tools, sequencers, agencies, and in-house outbound operations."
+  eyebrow="Compare"
+  headline="Superwave is not another cold email tool."
+  copy="The comparison system should defend the category: managed outbound infrastructure, not warmup theater or mailbox resale."
+  secondaryTitle="Comparison angles"
+  secondaryCopy="Each comparison page should explain the enemy, the mechanism gap, and why delivery-first infrastructure wins."
+  cards={cards}
+/>

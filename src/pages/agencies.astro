@@ -1,0 +1,23 @@
+---
+import SimplePage from "../components/SimplePage.astro";
+
+const cards = [
+  { title: "Client pods", copy: "Launch clean infrastructure for each client without rebuilding the setup every time." },
+  { title: "Volume economics", copy: "Package domains, inboxes, monitoring, and support into a repeatable agency margin model." },
+  { title: "Central visibility", copy: "See infrastructure health, replies, lead records, and delivery risk across client workspaces." },
+  { title: "Partner support", copy: "Give agency teams a managed escalation path for deliverability, DNS, and launch issues." },
+  { title: "Reply handling", copy: "Capture and classify signal so client campaigns do not drown in disconnected inboxes." },
+  { title: "Scale plan", copy: "Apply, audit infrastructure, approve volume, launch the first pod, then add clients from one system." }
+];
+---
+
+<SimplePage
+  title="Agencies | Superwave"
+  description="Superwave agency partner program for scalable outbound infrastructure."
+  eyebrow="Agencies"
+  headline="Scale more outbound clients without rebuilding infrastructure."
+  copy="Superwave gives agencies a managed infrastructure layer for domains, inboxes, deliverability, sequencer support, and reply operations."
+  secondaryTitle="Agency operating model"
+  secondaryCopy="The agency page should feel like a partner funnel, not a generic use-case page."
+  cards={cards}
+/>

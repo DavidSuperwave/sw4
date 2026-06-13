@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "./SiteHeader.astro";
+import SiteFooter from "./SiteFooter.astro";
+import PageHero from "./PageHero.astro";
+import SectionHeader from "./SectionHeader.astro";
+import CtaBand from "./CtaBand.astro";
+
+interface Card {
+  title: string;
+  copy: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  headline: string;
+  copy: string;
+  cards: Card[];
+  secondaryTitle: string;
+  secondaryCopy: string;
+}
+
+const { title, description, eyebrow, headline, copy, cards, secondaryTitle, secondaryCopy } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <PageHero eyebrow={eyebrow} title={headline} copy={copy} compact>
+      <div class="mini-console">
+        <span>Superwave route</span>
+        <strong>{eyebrow}</strong>
+        <p>{secondaryCopy}</p>
+      </div>
+    </PageHero>
+
+    <section class="content-section">
+      <div class="section-inner">
+        <SectionHeader eyebrow="Overview" title={secondaryTitle} copy={secondaryCopy} />
+        <div class="feature-grid three-up">
+          {cards.map((card) => (
+            <article class="feature-card">
+              <h3>{card.title}</h3>
+              <p>{card.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+    <CtaBand />
+  </main>
+  <SiteFooter />
+</BaseLayout>

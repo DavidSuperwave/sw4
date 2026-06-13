@@ -1,0 +1,24 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  copy?: string;
+  cta?: string;
+}
+
+const {
+  eyebrow = "Start with delivery",
+  title = "Everything else scales from there.",
+  copy = "Run a free infrastructure audit and see whether your outbound stack is ready to scale.",
+  cta = "Run free infrastructure audit"
+} = Astro.props;
+---
+
+<section class="cta-band-section">
+  <div class="section-inner cta-band">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2>{title}</h2>
+    <p>{copy}</p>
+    <a class="button button-primary" href="/pricing">{cta}</a>
+  </div>
+</section>

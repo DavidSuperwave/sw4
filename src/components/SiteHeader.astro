@@ -1,0 +1,13 @@
+---
+import { navItems } from "../data/site";
+---
+
+<header class="site-header">
+  <a class="brand" href="/" aria-label="Superwave home">
+    <img src="/assets/superwave-logo-white.png" alt="Superwave" width="112" height="30" />
+  </a>
+  <nav aria-label="Primary navigation">
+    {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+  </nav>
+  <a class="nav-cta" href="/pricing">Run Free Audit</a>
+</header>

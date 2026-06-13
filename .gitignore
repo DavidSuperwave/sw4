@@ -6,4 +6,7 @@ dist/
 CONSULT.md
 REVIEW_TO_GPT_5_5_PRO_*.md
 superwave-home-*.png
+*-before.png
+*-after.png
+*-final*.png
 *.zip

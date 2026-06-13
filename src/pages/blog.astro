@@ -1,0 +1,23 @@
+---
+import SimplePage from "../components/SimplePage.astro";
+
+const cards = [
+  { title: "Managed cold email infrastructure", copy: "Category article defining the rails underneath outbound." },
+  { title: "Protect your primary domain", copy: "SEO article around isolation, domain risk, and safer sending architecture." },
+  { title: "Microsoft deliverability", copy: "Operational guide for the deliverability path many teams underestimate." },
+  { title: "Warmup tool lying", copy: "Contrarian article separating green dashboards from actual inbox performance." },
+  { title: "Shared infrastructure risk", copy: "Explain how bad neighbors, shared rails, and unmanaged pools hurt clean senders." },
+  { title: "Outbound infrastructure cost", copy: "Calculator-led article for teams deciding whether to DIY or use Superwave." }
+];
+---
+
+<SimplePage
+  title="Blog | Superwave"
+  description="Superwave blog topics for outbound infrastructure, deliverability, domain protection, and operator workflows."
+  eyebrow="Blog"
+  headline="Category education for outbound operators."
+  copy="The blog should support SEO while teaching the delivery-first worldview behind Superwave."
+  secondaryTitle="Initial article map"
+  secondaryCopy="Start with category pages and high-intent operational questions before publishing broad thought leadership."
+  cards={cards}
+/>

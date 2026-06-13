@@ -1,0 +1,28 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  copy: string;
+  primary?: string;
+  secondary?: string;
+  compact?: boolean;
+}
+
+const { eyebrow, title, copy, primary = "Run free audit", secondary = "See platform", compact = false } = Astro.props;
+---
+
+<section class:list={["page-hero", compact && "page-hero-compact"]}>
+  <div class="hero-media" aria-hidden="true"></div>
+  <div class="section-inner page-hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p class="hero-subhead">{copy}</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="/pricing">{primary}</a>
+        <a class="button button-secondary" href="/platform">{secondary}</a>
+      </div>
+    </div>
+    <slot />
+  </div>
+</section>

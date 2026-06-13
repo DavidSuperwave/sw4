@@ -1,0 +1,23 @@
+---
+import SimplePage from "../components/SimplePage.astro";
+
+const cards = [
+  { title: "ICP signal map", copy: "Turn segment performance into a clearer picture of who should receive the next campaign." },
+  { title: "Reply classification", copy: "Separate positive replies, objections, referrals, bounces, and non-fit responses." },
+  { title: "Objection intelligence", copy: "Use repeated objections to improve messaging, qualification, and sales scripts." },
+  { title: "Script generator", copy: "Translate outbound activity into call prep, follow-up, and next-touch recommendations." },
+  { title: "Campaign recommendations", copy: "Use signal from prior sends to guide the next audience, angle, and offer test." },
+  { title: "Pipeline logic", copy: "Connect reply and lead data to CRM decisions instead of leaving it trapped in inboxes." }
+];
+---
+
+<SimplePage
+  title="CloseOS | Superwave"
+  description="CloseOS is the Superwave intelligence layer for outbound replies, leads, objections, targeting, and pipeline decisions."
+  eyebrow="CloseOS"
+  headline="Outbound intelligence after the rails are working."
+  copy="Superwave creates the activity data. CloseOS turns that data into targeting, messaging, qualification, and pipeline decisions."
+  secondaryTitle="Intelligence modules"
+  secondaryCopy="CloseOS is the second act: the layer that learns once Superwave can see who receives, replies, objects, books, and converts."
+  cards={cards}
+/>

@@ -1,0 +1,17 @@
+---
+import SimplePage from "../components/SimplePage.astro";
+import { pricingPlans } from "../data/site";
+
+const cards = pricingPlans.map((plan) => ({ title: `${plan.name} - ${plan.price}`, copy: plan.copy }));
+---
+
+<SimplePage
+  title="Pricing | Superwave"
+  description="Superwave pricing for free tools, sandbox infrastructure, managed infrastructure, and CloseOS beta."
+  eyebrow="Pricing"
+  headline="Simple entry point. Managed scale when you need it."
+  copy="Start with free diagnostics or a sandbox infrastructure pod, then move into managed scale when outbound becomes an operating channel."
+  secondaryTitle="Plans"
+  secondaryCopy="Pricing should be transparent enough to anchor the decision while keeping complex deployments sales-led."
+  cards={cards}
+/>

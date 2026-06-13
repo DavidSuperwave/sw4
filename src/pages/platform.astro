@@ -1,0 +1,15 @@
+---
+import SimplePage from "../components/SimplePage.astro";
+import { platformModules } from "../data/site";
+---
+
+<SimplePage
+  title="Platform | Superwave"
+  description="Explore the Superwave managed outbound infrastructure platform."
+  eyebrow="Platform"
+  headline="The operator layer underneath outbound."
+  copy="Superwave connects domains, inboxes, monitoring, replies, leads, sequencers, and CloseOS signal into one managed system."
+  secondaryTitle="Platform modules"
+  secondaryCopy="Start with delivery, then build the operating system around every reply, bounce, segment, and campaign outcome."
+  cards={platformModules}
+/>

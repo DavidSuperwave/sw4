@@ -1,0 +1,33 @@
+---
+interface Props {
+  mode?: "hero" | "compact";
+}
+
+const { mode = "hero" } = Astro.props;
+---
+
+<div class:list={["product-console", mode === "compact" && "product-console-compact"]} aria-label="Superwave platform preview">
+  <div class="console-bar">
+    <span></span><span></span><span></span>
+    <strong>Outbound OS</strong>
+  </div>
+  <div class="console-main">
+    <div class="health-panel">
+      <span>Domain health</span>
+      <strong>98%</strong>
+      <em>12 active pods monitored</em>
+    </div>
+    <div class="signal-table">
+      <div><span>Inbox placement</span><strong>Monitored</strong></div>
+      <div><span>Active inboxes</span><strong>990</strong></div>
+      <div><span>Replies captured</span><strong>128</strong></div>
+      <div><span>CloseOS feed</span><strong>Beta</strong></div>
+    </div>
+  </div>
+  <div class="pipeline-row">
+    <span>Sequencer</span>
+    <span>Infrastructure</span>
+    <span>Reply Agent</span>
+    <span>Lead Vault</span>
+  </div>
+</div>

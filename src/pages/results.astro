@@ -1,0 +1,23 @@
+---
+import SimplePage from "../components/SimplePage.astro";
+
+const cards = [
+  { title: "Before state", copy: "Show the infrastructure problem, campaign risk, and operational blind spots before Superwave." },
+  { title: "Deployment", copy: "Document domains, inboxes, DNS, monitoring, reply routing, sequencer connection, and timeline." },
+  { title: "Outcome", copy: "Tie delivery, replies, meetings, opportunities, and operator visibility back to the infrastructure change." },
+  { title: "Proof assets", copy: "Use reports, screenshots, reply math, and before/after health to make each story defensible." },
+  { title: "Case study bank", copy: "Initial stories can cover Savvy Capital, Growth Engine X, agencies, founder-led sales, and recruiting." },
+  { title: "Mechanism clarity", copy: "Every result should explain what changed underneath the sequencer, not only what the campaign did." }
+];
+---
+
+<SimplePage
+  title="Results | Superwave"
+  description="Superwave results and proof framework for managed outbound infrastructure."
+  eyebrow="Results"
+  headline="Show the before, the rails, and the result."
+  copy="The results system should operate like a proof bank: specific, visual, measurable, and tied to the infrastructure mechanism."
+  secondaryTitle="Proof framework"
+  secondaryCopy="Superwave should make evidence feel operational, not decorative."
+  cards={cards}
+/>
