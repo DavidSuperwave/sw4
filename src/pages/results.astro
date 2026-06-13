@@ -1,23 +1,85 @@
 ---
-import SimplePage from "../components/SimplePage.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import PageSection from "../components/PageSection.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { pageMeta, proofFramework } from "../data/site";
 
-const cards = [
-  { title: "Before state", copy: "Show the infrastructure problem, campaign risk, and operational blind spots before Superwave." },
-  { title: "Deployment", copy: "Document domains, inboxes, DNS, monitoring, reply routing, sequencer connection, and timeline." },
-  { title: "Outcome", copy: "Tie delivery, replies, meetings, opportunities, and operator visibility back to the infrastructure change." },
-  { title: "Proof assets", copy: "Use reports, screenshots, reply math, and before/after health to make each story defensible." },
-  { title: "Case study bank", copy: "Initial stories can cover Savvy Capital, Growth Engine X, agencies, founder-led sales, and recruiting." },
-  { title: "Mechanism clarity", copy: "Every result should explain what changed underneath the sequencer, not only what the campaign did." }
+const { title, description } = pageMeta.results;
+
+const proofSlots = [
+  "Infrastructure report screenshot",
+  "Before/after domain health",
+  "Reply routing snapshot",
+  "Campaign volume and timeline",
+  "Operator workflow change",
+  "Client quote placeholder"
+];
+
+const caseTemplates = [
+  { title: "Agency client pod", copy: "Before state, deployment timeline, inbox/domain model, reply operations, and client-facing reporting." },
+  { title: "Founder-led B2B service", copy: "Market test setup, protected primary domain, campaign readiness, and early reply signal." },
+  { title: "Recruiting or staffing", copy: "Narrow audience reach, domain isolation, reply classification, and segment learning." }
 ];
 ---
 
-<SimplePage
-  title="Results | Superwave"
-  description="Superwave results and proof framework for managed outbound infrastructure."
-  eyebrow="Results"
-  headline="Show the before, the rails, and the result."
-  copy="The results system should operate like a proof bank: specific, visual, measurable, and tied to the infrastructure mechanism."
-  secondaryTitle="Proof framework"
-  secondaryCopy="Superwave should make evidence feel operational, not decorative."
-  cards={cards}
-/>
+<BaseLayout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <PageHero
+      eyebrow="Results"
+      title="Show the before, the rails, and the result."
+      copy="Superwave results should read like operational proof: what was broken, what changed underneath the sequencer, and which outcome became visible."
+      primary="Run free audit"
+      secondary="See proof framework"
+      primaryHref="/pricing"
+      secondaryHref="/results"
+      compact
+    >
+      <div class="mini-console">
+        <span>Proof route</span>
+        <strong>No invented wins</strong>
+        <p>Use placeholders until screenshots, quotes, and campaign data are ready.</p>
+      </div>
+    </PageHero>
+
+    <PageSection>
+      <SectionHeader eyebrow="Proof framework" title="Every case study follows one mechanism." copy="Avoid decorative testimonials. The results page should make infrastructure causality easy to inspect." align="center" />
+      <div class="feature-grid three-up">
+        {proofFramework.map((item) => (
+          <article class="feature-card">
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+          </article>
+        ))}
+      </div>
+    </PageSection>
+
+    <PageSection tone="surface">
+      <div class="split-grid">
+        <SectionHeader eyebrow="Proof assets" title="The page is ready for real evidence." copy="These slots are intentionally labeled as proof inputs rather than fake outcomes. Fill them as client artifacts become approved." />
+        <div class="tag-grid proof-slot-grid">
+          {proofSlots.map((slot) => <span>{slot}</span>)}
+        </div>
+      </div>
+    </PageSection>
+
+    <PageSection>
+      <SectionHeader eyebrow="Case templates" title="Initial stories to build first." />
+      <div class="feature-grid three-up">
+        {caseTemplates.map((item) => (
+          <article class="feature-card">
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+          </article>
+        ))}
+      </div>
+    </PageSection>
+
+    <CtaBand title="Turn the next audit into the first proof asset." copy="Use the audit to document the before state, the infrastructure deployment, and the operational result." />
+  </main>
+  <SiteFooter />
+</BaseLayout>

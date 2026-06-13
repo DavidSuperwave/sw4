@@ -1,20 +1,63 @@
 ---
-import SimplePage from "../components/SimplePage.astro";
-import { tools } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import PageSection from "../components/PageSection.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { pageMeta, toolCategories } from "../data/site";
 
-const cards = tools.map((tool) => ({
-  title: tool,
-  copy: "A practical diagnostic surface for operators preparing, checking, or repairing outbound infrastructure."
-}));
+const { title, description } = pageMeta.tools;
 ---
 
-<SimplePage
-  title="Free Outbound Tools | Superwave"
-  description="Free tools and checklists for cold email infrastructure, DNS, deliverability, and launch readiness."
-  eyebrow="Tools"
-  headline="Free diagnostics for outbound operators."
-  copy="Use the toolbox to inspect domains, DNS, deliverability risk, launch readiness, and infrastructure cost before scaling send volume."
-  secondaryTitle="Tool library"
-  secondaryCopy="Each tool is designed to end in a useful decision: fix it yourself, or let Superwave manage the infrastructure."
-  cards={cards}
-/>
+<BaseLayout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <PageHero
+      eyebrow="Tools"
+      title="Free diagnostics for outbound operators."
+      copy="The toolbox helps teams inspect DNS, deliverability risk, launch readiness, and infrastructure cost before they scale send volume."
+      primary="Run free audit"
+      secondary="Browse tools"
+      primaryHref="/pricing"
+      secondaryHref="/tools"
+      compact
+    >
+      <div class="mini-console">
+        <span>Tool library</span>
+        <strong>Coming online</strong>
+        <p>Tool cards are acquisition surfaces first; calculators and checkers can be wired in later.</p>
+      </div>
+    </PageHero>
+
+    <PageSection>
+      <SectionHeader eyebrow="Library" title="Grouped by the operator decision they support." copy="No fake calculators yet. Each surface is framed as a diagnostic page that can become interactive once the logic is ready." />
+      <div class="tool-category-grid">
+        {toolCategories.map((category) => (
+          <article class="tool-category">
+            <h3>{category.title}</h3>
+            <p>{category.copy}</p>
+            <div class="tag-grid tool-card-grid">
+              {category.tools.map((tool) => <span>{tool}<em>Coming soon</em></span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </PageSection>
+
+    <PageSection tone="surface">
+      <div class="split-grid">
+        <SectionHeader eyebrow="Conversion logic" title="Every tool should end with an infrastructure decision." copy="The free tools earn trust, diagnose risk, and point serious teams toward either a self-serve fix or a managed Superwave audit." />
+        <div class="compact-list">
+          <div class="list-link"><strong>Check</strong><span>Give the operator a useful diagnostic without requiring a sales call.</span></div>
+          <div class="list-link"><strong>Explain</strong><span>Show why the issue matters for domain protection and deliverability.</span></div>
+          <div class="list-link"><strong>Escalate</strong><span>Offer the audit when the fix requires managed infrastructure work.</span></div>
+        </div>
+      </div>
+    </PageSection>
+
+    <CtaBand title="Want us to inspect it for you?" copy="Run the free infrastructure audit and get a clearer read on domains, DNS, inboxes, and sequencer setup." />
+  </main>
+  <SiteFooter />
+</BaseLayout>

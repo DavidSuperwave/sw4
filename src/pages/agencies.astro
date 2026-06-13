@@ -1,23 +1,82 @@
 ---
-import SimplePage from "../components/SimplePage.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import PageSection from "../components/PageSection.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { agencyFlow, pageMeta } from "../data/site";
 
-const cards = [
-  { title: "Client pods", copy: "Launch clean infrastructure for each client without rebuilding the setup every time." },
-  { title: "Volume economics", copy: "Package domains, inboxes, monitoring, and support into a repeatable agency margin model." },
-  { title: "Central visibility", copy: "See infrastructure health, replies, lead records, and delivery risk across client workspaces." },
-  { title: "Partner support", copy: "Give agency teams a managed escalation path for deliverability, DNS, and launch issues." },
-  { title: "Reply handling", copy: "Capture and classify signal so client campaigns do not drown in disconnected inboxes." },
-  { title: "Scale plan", copy: "Apply, audit infrastructure, approve volume, launch the first pod, then add clients from one system." }
+const { title, description } = pageMeta.agencies;
+
+const agencyModules = [
+  { title: "Client pods", copy: "Repeatable domain, inbox, monitoring, reply, and reporting structure for each client account." },
+  { title: "Volume support", copy: "A managed path for agencies that need to expand infrastructure without rebuilding process every time." },
+  { title: "Margin protection", copy: "Move setup and deliverability work into an operating layer instead of custom ops for every client." },
+  { title: "Central visibility", copy: "See infrastructure health, reply handling, and lead signal across client workspaces." },
+  { title: "Sequencer support", copy: "Connect the tools clients already use while Superwave manages the rails below them." },
+  { title: "Partner workflow", copy: "Apply, audit, approve volume, launch the first pod, then add clients from one model." }
 ];
 ---
 
-<SimplePage
-  title="Agencies | Superwave"
-  description="Superwave agency partner program for scalable outbound infrastructure."
-  eyebrow="Agencies"
-  headline="Scale more outbound clients without rebuilding infrastructure."
-  copy="Superwave gives agencies a managed infrastructure layer for domains, inboxes, deliverability, sequencer support, and reply operations."
-  secondaryTitle="Agency operating model"
-  secondaryCopy="The agency page should feel like a partner funnel, not a generic use-case page."
-  cards={cards}
-/>
+<BaseLayout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <PageHero
+      eyebrow="Agencies"
+      title="Scale more outbound clients without rebuilding infrastructure."
+      copy="Superwave gives agencies a managed infrastructure layer for domains, inboxes, deliverability, sequencer support, reply handling, and client pod operations."
+      primary="Apply for agency access"
+      secondary="See client pod model"
+      primaryHref="/agencies"
+      secondaryHref="/pricing"
+      compact
+    >
+      <div class="mini-console">
+        <span>Agency route</span>
+        <strong>Client pods</strong>
+        <p>Repeat the infrastructure model across accounts without turning every client into a custom ops project.</p>
+      </div>
+    </PageHero>
+
+    <PageSection>
+      <SectionHeader eyebrow="Agency operating model" title="A partner funnel, not a generic use-case page." copy="The page should speak to agency owners who need delivery, visibility, support, and margin control across multiple client programs." />
+      <div class="feature-grid three-up">
+        {agencyModules.map((item) => (
+          <article class="feature-card">
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+          </article>
+        ))}
+      </div>
+    </PageSection>
+
+    <PageSection tone="surface">
+      <SectionHeader eyebrow="Launch flow" title="From application to first client pod." align="center" />
+      <div class="timeline-grid timeline-grid-four">
+        {agencyFlow.map((step, index) => (
+          <article class="timeline-card">
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{step.title}</h3>
+            <p>{step.copy}</p>
+          </article>
+        ))}
+      </div>
+    </PageSection>
+
+    <PageSection>
+      <div class="split-grid">
+        <SectionHeader eyebrow="What agencies avoid" title="No more rebuilding the same invisible stack." copy="The agency version of Superwave should make delivery operations repeatable, client-safe, and easier to explain." />
+        <div class="compact-list">
+          <div class="list-link"><strong>DNS chaos</strong><span>Centralize setup patterns instead of client-by-client improvisation.</span></div>
+          <div class="list-link"><strong>Reply sprawl</strong><span>Keep signal visible when campaigns span many inboxes and stakeholders.</span></div>
+          <div class="list-link"><strong>Margin leaks</strong><span>Reduce the hidden labor of troubleshooting inboxes, domains, and deliverability.</span></div>
+        </div>
+      </div>
+    </PageSection>
+
+    <CtaBand title="Apply for agency access." copy="Start with an infrastructure audit and build the first repeatable client pod." cta="Apply for agency access" href="/agencies" />
+  </main>
+  <SiteFooter />
+</BaseLayout>

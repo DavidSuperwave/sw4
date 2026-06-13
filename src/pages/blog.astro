@@ -1,23 +1,60 @@
 ---
-import SimplePage from "../components/SimplePage.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import PageSection from "../components/PageSection.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { articleRoadmap, pageMeta } from "../data/site";
 
-const cards = [
-  { title: "Managed cold email infrastructure", copy: "Category article defining the rails underneath outbound." },
-  { title: "Protect your primary domain", copy: "SEO article around isolation, domain risk, and safer sending architecture." },
-  { title: "Microsoft deliverability", copy: "Operational guide for the deliverability path many teams underestimate." },
-  { title: "Warmup tool lying", copy: "Contrarian article separating green dashboards from actual inbox performance." },
-  { title: "Shared infrastructure risk", copy: "Explain how bad neighbors, shared rails, and unmanaged pools hurt clean senders." },
-  { title: "Outbound infrastructure cost", copy: "Calculator-led article for teams deciding whether to DIY or use Superwave." }
-];
+const { title, description } = pageMeta.blog;
 ---
 
-<SimplePage
-  title="Blog | Superwave"
-  description="Superwave blog topics for outbound infrastructure, deliverability, domain protection, and operator workflows."
-  eyebrow="Blog"
-  headline="Category education for outbound operators."
-  copy="The blog should support SEO while teaching the delivery-first worldview behind Superwave."
-  secondaryTitle="Initial article map"
-  secondaryCopy="Start with category pages and high-intent operational questions before publishing broad thought leadership."
-  cards={cards}
-/>
+<BaseLayout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <PageHero
+      eyebrow="Blog"
+      title="Category education for outbound operators."
+      copy="The blog roadmap supports SEO while teaching the delivery-first worldview behind managed outbound infrastructure."
+      primary="Run free audit"
+      secondary="See roadmap"
+      primaryHref="/pricing"
+      secondaryHref="/blog"
+      compact
+    >
+      <div class="mini-console">
+        <span>Editorial status</span>
+        <strong>Roadmap</strong>
+        <p>Visible as an article map until full posts are drafted and approved.</p>
+      </div>
+    </PageHero>
+
+    <PageSection>
+      <SectionHeader eyebrow="Article roadmap" title="Start with high-intent operational questions." copy="These planned articles should become category pages, tool companion posts, and comparison support before broad thought leadership." />
+      <div class="feature-grid three-up">
+        {articleRoadmap.map((article) => (
+          <article class="feature-card">
+            <h3>{article.title}</h3>
+            <p>{article.copy}</p>
+          </article>
+        ))}
+      </div>
+    </PageSection>
+
+    <PageSection tone="surface">
+      <div class="split-grid">
+        <SectionHeader eyebrow="Editorial rule" title="No empty posts. No fake proof." copy="Each article should either answer a practical infrastructure question, support a free tool, or strengthen the managed outbound infrastructure category." />
+        <div class="compact-list">
+          <div class="list-link"><strong>Category</strong><span>Define the market and the enemy: outbound guesswork.</span></div>
+          <div class="list-link"><strong>Diagnostic</strong><span>Connect SEO questions to actionable checks and tools.</span></div>
+          <div class="list-link"><strong>Commercial</strong><span>Bridge high-intent readers into the free infrastructure audit.</span></div>
+        </div>
+      </div>
+    </PageSection>
+
+    <CtaBand title="Use the audit as the first content engine." copy="Real audits create real questions, proof assets, and article topics for the Superwave category." />
+  </main>
+  <SiteFooter />
+</BaseLayout>

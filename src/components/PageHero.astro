@@ -5,10 +5,21 @@ interface Props {
   copy: string;
   primary?: string;
   secondary?: string;
+  primaryHref?: string;
+  secondaryHref?: string;
   compact?: boolean;
 }
 
-const { eyebrow, title, copy, primary = "Run free audit", secondary = "See platform", compact = false } = Astro.props;
+const {
+  eyebrow,
+  title,
+  copy,
+  primary = "Run free audit",
+  secondary = "See platform",
+  primaryHref = "/pricing",
+  secondaryHref = "/platform",
+  compact = false
+} = Astro.props;
 ---
 
 <section class:list={["page-hero", compact && "page-hero-compact"]}>
@@ -19,8 +30,8 @@ const { eyebrow, title, copy, primary = "Run free audit", secondary = "See platf
       <h1>{title}</h1>
       <p class="hero-subhead">{copy}</p>
       <div class="hero-actions">
-        <a class="button button-primary" href="/pricing">{primary}</a>
-        <a class="button button-secondary" href="/platform">{secondary}</a>
+        <a class="button button-primary" href={primaryHref}>{primary}</a>
+        <a class="button button-secondary" href={secondaryHref}>{secondary}</a>
       </div>
     </div>
     <slot />

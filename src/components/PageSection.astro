@@ -1,0 +1,13 @@
+---
+interface Props {
+  tone?: "default" | "surface";
+}
+
+const { tone = "default" } = Astro.props;
+---
+
+<section class:list={["content-section", tone === "surface" && "surface-section"]}>
+  <div class="section-inner">
+    <slot />
+  </div>
+</section>

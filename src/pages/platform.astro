@@ -1,15 +1,73 @@
 ---
-import SimplePage from "../components/SimplePage.astro";
-import { platformModules } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import PageHero from "../components/PageHero.astro";
+import ProductConsole from "../components/ProductConsole.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import PageSection from "../components/PageSection.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { mechanism, pageMeta, platformModules, setupSteps } from "../data/site";
+
+const { title, description } = pageMeta.platform;
 ---
 
-<SimplePage
-  title="Platform | Superwave"
-  description="Explore the Superwave managed outbound infrastructure platform."
-  eyebrow="Platform"
-  headline="The operator layer underneath outbound."
-  copy="Superwave connects domains, inboxes, monitoring, replies, leads, sequencers, and CloseOS signal into one managed system."
-  secondaryTitle="Platform modules"
-  secondaryCopy="Start with delivery, then build the operating system around every reply, bounce, segment, and campaign outcome."
-  cards={platformModules}
-/>
+<BaseLayout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <PageHero
+      eyebrow="Platform"
+      title="The operator layer underneath outbound."
+      copy="Superwave connects domains, inboxes, monitoring, replies, leads, sequencers, and CloseOS signal into one managed system."
+      primary="Run free audit"
+      secondary="See modules"
+      primaryHref="/pricing"
+      secondaryHref="/platform"
+      compact
+    >
+      <ProductConsole mode="compact" />
+    </PageHero>
+
+    <PageSection>
+      <SectionHeader eyebrow="Modules" title="Everything operators need to see before scaling send volume." copy="The platform is organized around delivery first, then reply capture, lead signal, sequencer access, reporting, and CloseOS learning." />
+      <div class="feature-grid three-up">
+        {platformModules.map((module) => (
+          <article class="feature-card">
+            <h3>{module.title}</h3>
+            <p>{module.copy}</p>
+          </article>
+        ))}
+      </div>
+    </PageSection>
+
+    <PageSection tone="surface">
+      <SectionHeader eyebrow="Mechanism" title="The stack starts underneath the sequencer." align="center" />
+      <div class="timeline-grid">
+        {mechanism.map((step, index) => (
+          <article class="timeline-card">
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{step.title}</h3>
+            <p>{step.copy}</p>
+          </article>
+        ))}
+      </div>
+    </PageSection>
+
+    <PageSection>
+      <div class="split-grid">
+        <SectionHeader eyebrow="Operating cadence" title="Managed means someone is watching the rails." copy="The platform page should make Superwave feel like an operating system, not a one-time setup vendor." />
+        <div class="compact-list">
+          {setupSteps.map((step) => (
+            <div class="list-link">
+              <strong>{step.title}</strong>
+              <span>{step.copy}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </PageSection>
+
+    <CtaBand title="Inspect the rails before you scale." copy="Run the free audit to see how your domains, inboxes, DNS, sequencer setup, and reply flow hold up." />
+  </main>
+  <SiteFooter />
+</BaseLayout>

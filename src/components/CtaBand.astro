@@ -4,13 +4,15 @@ interface Props {
   title?: string;
   copy?: string;
   cta?: string;
+  href?: string;
 }
 
 const {
   eyebrow = "Start with delivery",
   title = "Everything else scales from there.",
   copy = "Run a free infrastructure audit and see whether your outbound stack is ready to scale.",
-  cta = "Run free infrastructure audit"
+  cta = "Run free infrastructure audit",
+  href = "/pricing"
 } = Astro.props;
 ---
 
@@ -19,6 +21,6 @@ const {
     <p class="eyebrow">{eyebrow}</p>
     <h2>{title}</h2>
     <p>{copy}</p>
-    <a class="button button-primary" href="/pricing">{cta}</a>
+    <a class="button button-primary" href={href}>{cta}</a>
   </div>
 </section>

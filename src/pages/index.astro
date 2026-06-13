@@ -7,22 +7,40 @@ import ProductConsole from "../components/ProductConsole.astro";
 import MetricStrip from "../components/MetricStrip.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { faqs, integrations, mechanism, platformModules, pricingPlans, tools, useCases } from "../data/site";
+import {
+  auditChecks,
+  auditOutcomes,
+  faqs,
+  integrations,
+  mechanism,
+  pageMeta,
+  platformModules,
+  pricingPlans,
+  siteUrl,
+  tools,
+  useCases
+} from "../data/site";
 
-const title = "Superwave | Managed Outbound Infrastructure";
-const description =
-  "Superwave gives cold email teams managed domains, inboxes, deliverability monitoring, reply routing, lead storage, and outbound intelligence in one operator layer.";
----
-
-<BaseLayout title={title} description={description}>
-  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+const { title, description } = pageMeta.home;
+const jsonLd = [
+  {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Superwave",
-    url: "https://superwave.io",
+    url: siteUrl,
     description
-  })} />
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Superwave",
+    url: siteUrl,
+    description
+  }
+];
+---
 
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
   <SiteHeader />
   <main>
     <PageHero
@@ -44,10 +62,28 @@ const description =
           <h2>Know whether the offer failed or the rails failed.</h2>
         </div>
         <div class="audit-checks" aria-label="What the Superwave audit checks">
-          <article><strong>Domains</strong><span>Primary risk, sending isolation, age, and domain mix.</span></article>
-          <article><strong>DNS/auth</strong><span>SPF, DKIM, DMARC, tracking, forwarding, and setup gaps.</span></article>
-          <article><strong>Inbox path</strong><span>Google and Microsoft risk, bounce patterns, and placement signals.</span></article>
-          <article><strong>Sequencer setup</strong><span>Sending volume, routing, campaign structure, and handoff risks.</span></article>
+          {auditChecks.map((item) => (
+            <article><strong>{item.title}</strong><span>{item.copy}</span></article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-inner">
+        <SectionHeader
+          eyebrow="Audit output"
+          title="A useful answer, not another vague discovery call."
+          copy="The audit should leave operators with a concrete view of what is working, what is risky, and which Superwave path fits the current outbound motion."
+          align="center"
+        />
+        <div class="feature-grid three-up">
+          {auditOutcomes.map((item) => (
+            <article class="feature-card">
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -97,10 +133,10 @@ const description =
         />
         <div class="feature-grid three-up">
           {platformModules.map((module) => (
-            <article class="feature-card">
+            <a class="feature-card card-link" href="/platform">
               <h3>{module.title}</h3>
               <p>{module.copy}</p>
-            </article>
+            </a>
           ))}
         </div>
       </div>
@@ -134,7 +170,7 @@ const description =
           copy="The tools pages create SEO surface area and give operators a reason to trust Superwave before they buy managed infrastructure."
         />
         <div class="tag-grid">
-          {tools.map((tool) => <span>{tool}</span>)}
+          {tools.map((tool) => <a href="/tools">{tool}</a>)}
         </div>
       </div>
     </section>
@@ -149,10 +185,10 @@ const description =
             copy="Superwave creates the activity data. CloseOS turns replies, bounces, objections, and segment performance into decisions for the next campaign, script, and market."
           />
           <div class="signal-cards">
-            <span>ICP signal map</span>
-            <span>Objection intelligence</span>
-            <span>Script generator</span>
-            <span>Campaign recommendations</span>
+            <a href="/closeos">ICP signal map</a>
+            <a href="/closeos">Objection intelligence</a>
+            <a href="/closeos">Script generator</a>
+            <a href="/closeos">Campaign recommendations</a>
           </div>
         </div>
       </div>
@@ -181,11 +217,11 @@ const description =
         />
         <div class="pricing-grid">
           {pricingPlans.map((plan) => (
-            <article class="price-card">
+            <a class="price-card card-link" href="/pricing">
               <h3>{plan.name}</h3>
               <strong>{plan.price}</strong>
               <p>{plan.copy}</p>
-            </article>
+            </a>
           ))}
         </div>
       </div>

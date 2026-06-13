@@ -1,23 +1,55 @@
 ---
-import SimplePage from "../components/SimplePage.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import PageHero from "../components/PageHero.astro";
+import ProductConsole from "../components/ProductConsole.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import PageSection from "../components/PageSection.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { closeOsModules, pageMeta } from "../data/site";
 
-const cards = [
-  { title: "ICP signal map", copy: "Turn segment performance into a clearer picture of who should receive the next campaign." },
-  { title: "Reply classification", copy: "Separate positive replies, objections, referrals, bounces, and non-fit responses." },
-  { title: "Objection intelligence", copy: "Use repeated objections to improve messaging, qualification, and sales scripts." },
-  { title: "Script generator", copy: "Translate outbound activity into call prep, follow-up, and next-touch recommendations." },
-  { title: "Campaign recommendations", copy: "Use signal from prior sends to guide the next audience, angle, and offer test." },
-  { title: "Pipeline logic", copy: "Connect reply and lead data to CRM decisions instead of leaving it trapped in inboxes." }
-];
+const { title, description } = pageMeta.closeos;
 ---
 
-<SimplePage
-  title="CloseOS | Superwave"
-  description="CloseOS is the Superwave intelligence layer for outbound replies, leads, objections, targeting, and pipeline decisions."
-  eyebrow="CloseOS"
-  headline="Outbound intelligence after the rails are working."
-  copy="Superwave creates the activity data. CloseOS turns that data into targeting, messaging, qualification, and pipeline decisions."
-  secondaryTitle="Intelligence modules"
-  secondaryCopy="CloseOS is the second act: the layer that learns once Superwave can see who receives, replies, objects, books, and converts."
-  cards={cards}
-/>
+<BaseLayout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <PageHero
+      eyebrow="CloseOS"
+      title="Outbound intelligence after the rails are working."
+      copy="Superwave creates the activity data. CloseOS turns replies, bounces, objections, segments, and qualification signals into decisions."
+      primary="Join waitlist"
+      secondary="See signal flow"
+      primaryHref="/closeos"
+      secondaryHref="/platform"
+      compact
+    >
+      <ProductConsole mode="compact" />
+    </PageHero>
+
+    <PageSection>
+      <SectionHeader eyebrow="Signal flow" title="From infrastructure visibility to better decisions." align="center" />
+      <div class="signal-flow-board">
+        <div><span>01</span><strong>Deliver</strong><p>Superwave monitors the rails and captures outbound activity.</p></div>
+        <div><span>02</span><strong>Classify</strong><p>Replies, bounces, objections, and segment behavior become structured signal.</p></div>
+        <div><span>03</span><strong>Decide</strong><p>CloseOS recommends targeting, scripts, qualification, and campaign moves.</p></div>
+      </div>
+    </PageSection>
+
+    <PageSection tone="surface">
+      <SectionHeader eyebrow="Intelligence modules" title="The premium layer built from outbound truth." copy="CloseOS should feel like the natural second act after managed infrastructure, not a separate AI feature." />
+      <div class="feature-grid three-up">
+        {closeOsModules.map((item) => (
+          <article class="feature-card">
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+          </article>
+        ))}
+      </div>
+    </PageSection>
+
+    <CtaBand title="Join the CloseOS waitlist." copy="Start with Superwave infrastructure, then turn the activity data into targeting, copy, scripts, and pipeline decisions." cta="Join CloseOS waitlist" href="/closeos" />
+  </main>
+  <SiteFooter />
+</BaseLayout>

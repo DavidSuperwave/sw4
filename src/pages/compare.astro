@@ -1,23 +1,60 @@
 ---
-import SimplePage from "../components/SimplePage.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import PageSection from "../components/PageSection.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { comparisonRows, pageMeta } from "../data/site";
 
-const cards = [
-  { title: "Mailbox resellers", copy: "Compare against mailbox-first tools by showing the difference between inventory and managed operation." },
-  { title: "Warmup tools", copy: "Separate visible warmup scores from actual deliverability, placement, and risk monitoring." },
-  { title: "Sequencers", copy: "Clarify that sequencers send, while Superwave manages the rails and the activity data around them." },
-  { title: "Agencies", copy: "Position Superwave as infrastructure and intelligence, not a campaign service shop." },
-  { title: "AI SDRs", copy: "Show why AI outreach still fails when it is sending over broken infrastructure." },
-  { title: "In-house ops", copy: "Compare the cost of manual inbox operations against a managed operator layer." }
-];
+const { title, description } = pageMeta.compare;
 ---
 
-<SimplePage
-  title="Compare | Superwave"
-  description="Compare Superwave against mailbox tools, warmup tools, sequencers, agencies, and in-house outbound operations."
-  eyebrow="Compare"
-  headline="Superwave is not another cold email tool."
-  copy="The comparison system should defend the category: managed outbound infrastructure, not warmup theater or mailbox resale."
-  secondaryTitle="Comparison angles"
-  secondaryCopy="Each comparison page should explain the enemy, the mechanism gap, and why delivery-first infrastructure wins."
-  cards={cards}
-/>
+<BaseLayout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <PageHero
+      eyebrow="Compare"
+      title="Superwave is not another cold email tool."
+      copy="Sequencers, warmup tools, mailbox vendors, agencies, AI SDRs, and in-house ops each solve part of the problem. Superwave manages the rails underneath the channel."
+      primary="Run free audit"
+      secondary="See platform"
+      primaryHref="/pricing"
+      secondaryHref="/platform"
+      compact
+    >
+      <div class="mini-console">
+        <span>Category enemy</span>
+        <strong>Outbound guesswork</strong>
+        <p>The comparison page should defend the managed infrastructure category.</p>
+      </div>
+    </PageHero>
+
+    <PageSection>
+      <SectionHeader eyebrow="Comparison matrix" title="What each category does, and where Superwave fits." />
+      <div class="compare-table">
+        <div class="compare-head"><span>Category</span><span>Typical role</span><span>Superwave role</span></div>
+        {comparisonRows.map((row) => (
+          <article class="compare-row">
+            <strong>{row.option}</strong>
+            <p>{row.theyDo}</p>
+            <p>{row.superwaveDoes}</p>
+          </article>
+        ))}
+      </div>
+    </PageSection>
+
+    <PageSection tone="surface">
+      <SectionHeader eyebrow="Positioning" title="The difference is operating visibility." copy="Superwave does not need to replace the tools around outbound on day one. It needs to make the channel inspectable, protected, and easier to scale." align="center" />
+      <div class="feature-grid three-up">
+        <article class="feature-card"><h3>Not mailbox resale</h3><p>The offer is managed operation, risk isolation, and monitoring around the mailbox layer.</p></article>
+        <article class="feature-card"><h3>Not warmup theater</h3><p>The promise is not a green score. It is a better view of whether outbound rails are actually healthy.</p></article>
+        <article class="feature-card"><h3>Not sequencer replacement</h3><p>Keep the sending tool. Upgrade the infrastructure and signal layer underneath it.</p></article>
+      </div>
+    </PageSection>
+
+    <CtaBand title="Compare your current stack against managed infrastructure." copy="The audit shows where your existing tools are enough, and where the rails need a real operating layer." />
+  </main>
+  <SiteFooter />
+</BaseLayout>

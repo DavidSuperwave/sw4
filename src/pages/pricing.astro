@@ -1,17 +1,87 @@
 ---
-import SimplePage from "../components/SimplePage.astro";
-import { pricingPlans } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import PageSection from "../components/PageSection.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { auditChecks, faqs, pageMeta, pricingPlans, setupSteps } from "../data/site";
 
-const cards = pricingPlans.map((plan) => ({ title: `${plan.name} - ${plan.price}`, copy: plan.copy }));
+const { title, description } = pageMeta.pricing;
 ---
 
-<SimplePage
-  title="Pricing | Superwave"
-  description="Superwave pricing for free tools, sandbox infrastructure, managed infrastructure, and CloseOS beta."
-  eyebrow="Pricing"
-  headline="Simple entry point. Managed scale when you need it."
-  copy="Start with free diagnostics or a sandbox infrastructure pod, then move into managed scale when outbound becomes an operating channel."
-  secondaryTitle="Plans"
-  secondaryCopy="Pricing should be transparent enough to anchor the decision while keeping complex deployments sales-led."
-  cards={cards}
-/>
+<BaseLayout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <PageHero
+      eyebrow="Pricing"
+      title="Simple entry point. Managed scale when you need it."
+      copy="Start with free diagnostics or a sandbox pod, then move into managed infrastructure when outbound becomes an operating channel."
+      primary="Run free audit"
+      secondary="Compare options"
+      primaryHref="/pricing"
+      secondaryHref="/compare"
+      compact
+    >
+      <div class="mini-console">
+        <span>Pricing route</span>
+        <strong>Audit first</strong>
+        <p>Every plan starts by understanding whether your current rails are ready to scale.</p>
+      </div>
+    </PageHero>
+
+    <PageSection>
+      <SectionHeader eyebrow="Plans" title="Transparent enough to anchor the decision." copy="Serious deployments still need a call because inbox count, domain strategy, agency volume, and monitoring expectations change the operating model." />
+      <div class="pricing-grid pricing-grid-large">
+        {pricingPlans.map((plan) => (
+          <article class="price-card">
+            <h3>{plan.name}</h3>
+            <strong>{plan.price}</strong>
+            <p>{plan.copy}</p>
+            <a class="inline-link" href="/pricing">Start here</a>
+          </article>
+        ))}
+      </div>
+    </PageSection>
+
+    <PageSection tone="surface">
+      <div class="split-grid">
+        <SectionHeader eyebrow="Audit checks" title="What gets inspected before a plan is recommended." copy="The audit prevents teams from buying infrastructure blindly. It identifies whether the current stack needs repair, replacement, or managed scale." />
+        <div class="audit-checks">
+          {auditChecks.map((item) => <article><strong>{item.title}</strong><span>{item.copy}</span></article>)}
+        </div>
+      </div>
+    </PageSection>
+
+    <PageSection>
+      <SectionHeader eyebrow="Setup path" title="The managed process after the audit." align="center" />
+      <div class="timeline-grid timeline-grid-four">
+        {setupSteps.map((step, index) => (
+          <article class="timeline-card">
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{step.title}</h3>
+            <p>{step.copy}</p>
+          </article>
+        ))}
+      </div>
+    </PageSection>
+
+    <PageSection tone="surface">
+      <div class="split-grid">
+        <SectionHeader eyebrow="Pricing FAQ" title="Questions before the first audit." />
+        <div class="faq-list">
+          {faqs.slice(0, 4).map((item) => (
+            <details>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </PageSection>
+
+    <CtaBand title="Start with the free infrastructure audit." copy="See which plan fits after the rails, domains, inboxes, and sequencer setup are inspected." />
+  </main>
+  <SiteFooter />
+</BaseLayout>
