@@ -1,0 +1,372 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Superwave | Managed Outbound Infrastructure";
+const description =
+  "Superwave gives cold email teams managed domains, inboxes, deliverability monitoring, reply routing, lead storage, and outbound intelligence in one operator layer.";
+
+const navItems = ["Platform", "Tools", "Results", "Pricing", "Agencies", "Compare", "CloseOS"];
+
+const proof = [
+  ["99-inbox", "bounce distribution architecture"],
+  ["Day-1", "sending infrastructure setup"],
+  ["920k+", "cold emails managed"],
+  ["112+", "outbound teams supported"]
+];
+
+const pains = [
+  "Warmup scores say green while Gmail sends you to spam.",
+  "Shared infrastructure lets bad neighbors burn clean senders.",
+  "Microsoft deliverability fails quietly until pipeline dries up.",
+  "Primary domains get exposed to outbound risk.",
+  "Replies disappear across inboxes and disconnected tools.",
+  "Teams cannot tell whether the offer failed or the rails failed."
+];
+
+const mechanism = [
+  ["Provision", "Configure domains, inboxes, DNS, and sending profiles around the outbound motion you want to run."],
+  ["Protect", "Keep outbound away from your primary domain and isolate risk across managed infrastructure."],
+  ["Monitor", "Track bounce patterns, deliverability signals, domain health, inbox placement, and sending behavior."],
+  ["Route", "Capture replies, classify intent, and keep lead records organized in the operator sandbox."],
+  ["Learn", "Feed campaign outcomes into CloseOS so targeting, copy, scripts, and qualification improve over time."]
+];
+
+const useCases = [
+  ["Agencies", "Launch client infrastructure without rebuilding the stack every time."],
+  ["SDR Teams", "Give reps reliable sending rails and reply visibility."],
+  ["Founder-Led Sales", "Test markets without risking your primary domain."],
+  ["Recruiting", "Reach narrow talent and client pools safely at scale."],
+  ["RevOps", "Replace duct-taped inbox operations with one managed layer."]
+];
+
+const tools = [
+  "DMARC generator",
+  "SPF generator",
+  "DKIM checker",
+  "Domain blacklist checker",
+  "Domain readiness scanner",
+  "Spam content checker",
+  "Warmup calculator",
+  "Infrastructure cost calculator",
+  "Inbox placement checklist",
+  "Primary domain risk audit",
+  "Microsoft deliverability checklist",
+  "Cold email launch checklist"
+];
+
+const integrations = ["Instantly", "Smartlead", "Clay", "Apollo", "Salesforge", "Lemlist", "Reply.io", "Outreach", "Salesloft", "API"];
+
+const closeOs = [
+  "ICP signal map",
+  "Segment performance",
+  "Objection intelligence",
+  "Reply classification",
+  "Script generator",
+  "Campaign recommendations"
+];
+
+const pricing = [
+  ["Free Tools", "Free", "DNS tools, checklists, readiness scanners, and calculators for operators getting the basics right."],
+  ["Sandbox Infrastructure", "Starts at $30/domain/mo", "Managed setup, inbox provisioning, DNS support, basic monitoring, and sequencer connection."],
+  ["Managed Infrastructure", "Custom", "Deliverability specialist, weekly reporting, reply agent, lead vault, and agency/team support."],
+  ["CloseOS Beta", "Invite-only", "Outbound intelligence layer for replies, leads, segments, scripts, and qualification logic."]
+];
+
+const faqs = [
+  ["Is Superwave a sequencer?", "No. Superwave sits underneath and around the sequencer: infrastructure, deliverability, replies, lead data, and operator visibility."],
+  ["Do I need Instantly, Smartlead, or another sequencer?", "Usually yes. Keep the sequencer you already use. Superwave upgrades the rails and data layer around it."],
+  ["Do you provide domains and inboxes?", "Superwave supports managed domain and inbox provisioning, DNS setup, and outbound-safe configuration."],
+  ["How do you protect my primary domain?", "Outbound is isolated from your primary domain with managed domains, controlled inbox profiles, and risk monitoring."],
+  ["What is CloseOS?", "CloseOS is the premium intelligence layer that turns outbound activity into targeting, messaging, qualification, and pipeline decisions."]
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Superwave",
+    url: "https://superwave.io",
+    description,
+    sameAs: []
+  })} />
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Superwave home">
+      <img src="/assets/superwave-logo-white.png" alt="" width="34" height="34" />
+      <span>Superwave</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      {navItems.map((item) => <a href={`#${item.toLowerCase()}`}>{item}</a>)}
+    </nav>
+    <a class="nav-cta" href="#audit">Run Free Audit</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="section-inner hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Meet Superwave</p>
+          <h1>Managed outbound infrastructure that gets your emails delivered from day one.</h1>
+          <p class="hero-subhead">
+            Superwave gives operators, agencies, and sales teams the managed domains, inboxes, reply handling,
+            lead storage, and deliverability systems needed to turn cold email into a reliable sales channel.
+          </p>
+          <div class="hero-actions" id="audit">
+            <a class="button button-primary" href="mailto:david@superwave.io?subject=Superwave%20Infrastructure%20Audit">Run free infrastructure audit</a>
+            <a class="button button-secondary" href="#platform">See the platform</a>
+          </div>
+        </div>
+
+        <div class="console-shell" aria-label="Superwave platform preview">
+          <div class="console-topbar">
+            <span></span><span></span><span></span>
+            <strong>Outbound control layer</strong>
+          </div>
+          <div class="health-ring">
+            <div>
+              <span>Domain health</span>
+              <strong>98%</strong>
+            </div>
+          </div>
+          <div class="console-grid">
+            <article>
+              <span>Inbox placement</span>
+              <strong>Monitored</strong>
+            </article>
+            <article>
+              <span>Active inboxes</span>
+              <strong>990</strong>
+            </article>
+            <article>
+              <span>Replies captured</span>
+              <strong>128</strong>
+            </article>
+            <article>
+              <span>CloseOS feed</span>
+              <strong>Beta</strong>
+            </article>
+          </div>
+          <div class="signal-flow">
+            <span>Sequencer</span>
+            <span>Infrastructure</span>
+            <span>Reply Agent</span>
+            <span>Lead Vault</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof-strip" aria-label="Superwave proof points">
+      <div class="section-inner proof-grid">
+        {proof.map(([metric, label]) => (
+          <div>
+            <strong>{metric}</strong>
+            <span>{label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="split-section" id="platform">
+      <div class="section-inner two-column">
+        <div>
+          <p class="eyebrow">The real bottleneck</p>
+          <h2>Most cold email campaigns fail before copy ever matters.</h2>
+          <p>
+            Sequencers can send emails. They cannot guarantee your infrastructure is healthy, your domains are
+            protected, your replies are routed, or your lead data is turning into better targeting.
+          </p>
+        </div>
+        <div class="pain-grid">
+          {pains.map((pain, index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <p>{pain}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="mechanism-section">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="eyebrow">How it works</p>
+          <h2>The outbound stack starts underneath the sequencer.</h2>
+        </div>
+        <div class="mechanism-line">
+          {mechanism.map(([name, copy]) => (
+            <article>
+              <span>{name}</span>
+              <p>{copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="use-case-section">
+      <div class="section-inner">
+        <div class="section-heading compact">
+          <p class="eyebrow">Built for operators</p>
+          <h2>One infrastructure layer, five high-intent paths.</h2>
+        </div>
+        <div class="use-case-grid">
+          {useCases.map(([name, copy]) => (
+            <article>
+              <h3>{name}</h3>
+              <p>{copy}</p>
+              <a href="#pricing">View path</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="toolbox-section" id="tools">
+      <div class="section-inner two-column">
+        <div>
+          <p class="eyebrow">Free operator toolbox</p>
+          <h2>Earn trust before the sales call.</h2>
+          <p>
+            Superwave should become the place outbound operators go before they buy anything. The tools create
+            intent, diagnose risk, and point serious teams toward managed infrastructure.
+          </p>
+          <a class="button button-secondary" href="#audit">Run the audit</a>
+        </div>
+        <div class="tool-grid">
+          {tools.map((tool) => <span>{tool}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="deliverability-section">
+      <div class="section-inner deliverability-grid">
+        <div class="report-panel">
+          <div class="report-header">
+            <span>Weekly signal report</span>
+            <strong>Live</strong>
+          </div>
+          <div class="bar-list">
+            <span style="--bar: 92%">Inbox health</span>
+            <span style="--bar: 76%">Bounce stability</span>
+            <span style="--bar: 84%">Reply routing</span>
+            <span style="--bar: 68%">Microsoft path</span>
+          </div>
+        </div>
+        <div>
+          <p class="eyebrow">Managed deliverability</p>
+          <h2>Deliverability should be managed, not guessed.</h2>
+          <p>
+            Superwave is built for teams that do not want to babysit domains, rotate inboxes, or wonder whether a
+            campaign failed because of the offer or because the infrastructure collapsed.
+          </p>
+          <p class="note">Ask about our managed inbox placement SLA.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="integrations-section">
+      <div class="section-inner">
+        <div class="section-heading compact">
+          <p class="eyebrow">Sequencer access</p>
+          <h2>Keep your sequencer. Upgrade the rails underneath it.</h2>
+          <p>Superwave is designed to plug into the tools outbound teams already use.</p>
+        </div>
+        <div class="integration-grid">
+          {integrations.map((item) => <span>{item}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="closeos-section" id="closeos">
+      <div class="section-inner closeos-grid">
+        <div>
+          <p class="eyebrow">CloseOS bridge</p>
+          <h2>The premium layer starts once the data starts flowing.</h2>
+          <p>
+            Superwave creates the outbound activity data. CloseOS turns replies, bounces, objections, and segment
+            performance into decisions for the next campaign, script, and market.
+          </p>
+          <a class="button button-primary" href="mailto:david@superwave.io?subject=CloseOS%20Waitlist">Join the CloseOS waitlist</a>
+        </div>
+        <div class="closeos-map">
+          {closeOs.map((item) => <span>{item}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="results-section" id="results">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="eyebrow">Proof system</p>
+          <h2>Show the before, the rails, and the result.</h2>
+          <p>
+            The results page should become a proof bank: client type, before state, infrastructure problem,
+            Superwave deployment, timeline, volume, outcomes, quote, screenshot proof, and operational change.
+          </p>
+        </div>
+        <div class="results-grid">
+          <article>
+            <span>Case study template</span>
+            <strong>Infrastructure diagnosis to campaign outcome</strong>
+          </article>
+          <article>
+            <span>Proof assets</span>
+            <strong>Reports, screenshots, reply math, and before/after health</strong>
+          </article>
+          <article>
+            <span>Initial stories</span>
+            <strong>Savvy Capital, Growth Engine X, agencies, founder-led sales, recruiting</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing-section" id="pricing">
+      <div class="section-inner">
+        <div class="section-heading compact">
+          <p class="eyebrow">Pricing</p>
+          <h2>Simple entry point. Managed scale when you need it.</h2>
+        </div>
+        <div class="pricing-grid">
+          {pricing.map(([name, price, copy]) => (
+            <article>
+              <h3>{name}</h3>
+              <strong>{price}</strong>
+              <p>{copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="section-inner two-column">
+        <div>
+          <p class="eyebrow">FAQ</p>
+          <h2>The questions serious operators ask first.</h2>
+        </div>
+        <div class="faq-list">
+          {faqs.map(([question, answer]) => (
+            <details>
+              <summary>{question}</summary>
+              <p>{answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="section-inner">
+        <p class="eyebrow">Start with delivery</p>
+        <h2>Everything else scales from there.</h2>
+        <p>Run a free infrastructure audit and see whether your outbound stack is ready to scale.</p>
+        <a class="button button-primary" href="#audit">Run free infrastructure audit</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

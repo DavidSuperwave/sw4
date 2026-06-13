@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+CONSULT.md
+REVIEW_TO_GPT_5_5_PRO_*.md
+superwave-home-*.png
+*.zip

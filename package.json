@@ -1,0 +1,19 @@
+{
+  "name": "superwave-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro check && astro build",
+    "preview": "astro preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.9",
+    "astro": "^6.4.6",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0"
+  }
+}
